@@ -23,6 +23,22 @@ class Solution:
             result.pop(0)
         return result
 
+    def plusOneBetter(self, digits):
+        digits[-1] += 1
+        carry = 0
+
+        for i in range(len(digits)-1,-1,-1):
+            digits[i] = digits[i] + carry
+            carry = digits[i] // 10
+            if carry == 0:
+                break
+            digits[i] = digits[i]%10
+
+        if carry == 1:
+            digits.insert(0,1)
+        return digits
+
+
 if __name__ == '__main__':
     s = Solution()
     result = s.plusOne([0])
