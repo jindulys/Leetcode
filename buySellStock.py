@@ -29,6 +29,16 @@ class Solution:
         result.sort()
         return result[-1]
 
+    # http://chaoren.is-programmer.com/posts/43595
+    def maxProfitKitt(self, prices):
+        if not prices: return 0
+        minPrice = prices[0]
+        maxProfit = 0
+        for price in prices:
+            minPrice = min(minPrice, price)
+            maxProfit = max(maxProfit, price - minPrice)
+        return maxProfit
+
 if __name__ == '__main__':
     s = Solution()
     m = s.maxProfit([4,1,2])
