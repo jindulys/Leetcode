@@ -32,6 +32,17 @@ class Solution:
 
         return -1
 
+    def canCompleteCircuit(self, gas, cost):
+        if sum(gas) < sum(cost): return -1
+        n = len(gas)
+        diff = 0
+        stationIndex = 0
+        i = 0
+        while i < n:
+            if gas[i]+diff < cost[i]: i = i+1; stationIndex = i;diff = 0
+            else: diff += gas[i]-cost[i]; i += 1
+        return stationIndex
+
 
 if __name__ == "__main__":
     s = Solution()
