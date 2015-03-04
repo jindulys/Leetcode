@@ -39,11 +39,39 @@ class Solution:
                 idx = idx + 1
                 pre = nums[idx]
 
+    def rotate2(self, nums, k):
+
+        if k % len(nums) == 0:
+            return
+
+        self.reverse(nums, 0, len(nums) - 1)
+
+        self.reverse(nums, 0, k%len(nums)-1)
+        self.reverse(nums, k%len(nums), len(nums)-1)
+
+    # reverse a list from From index to To index
+    def reverse(self, nums, From, To):
+
+        while From < To:
+            tmp = nums[To]
+            nums[To] = nums[From]
+            nums[From] = tmp
+            From +=1
+            To -= 1
+
+
+
+
+
 def test():
     s = Solution()
     nums = [1,2,3,4,5,6,7,8,9]
-    s.rotate1(nums,5)
+    s.rotate2(nums,5)
     print "pass" if nums == [5,6,7,8,9,1,2,3,4] else "Fail"
+
+    a = [1,2,3]
+    s.reverse(a,0,2)
+    print "pass" if a == [3,2,1] else "Fail"
 
 if __name__ == '__main__':
     test()
