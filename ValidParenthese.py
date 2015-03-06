@@ -1,3 +1,27 @@
+
+
+# according: https://github.com/lilianweng/LeetcodePython/blob/master/valid_parentheses.py
+class Solution1:
+    # @return a boolean
+    def isValid(self, s):
+        stack = []
+
+        left = {'(':0,'{':1,'[':2}
+        right = {')':0,'}':1,']':2}
+
+        for ch in s:
+            if ch in left:
+                stack.append(left[ch])
+            elif ch in right:
+                if not stack: return False
+                if stack[-1] == right[ch]: stack.pop()
+                else:
+                    return False
+            else:
+                return False
+        if not stack: return True
+        else: return False
+
 class Solution:
     # @return a boolean
     class Stack():
