@@ -22,3 +22,26 @@ class Solution1:
                 return False
 
         return self.isValidBST(root.left) and self.isValidBST(root.right)
+
+
+# Definition for a  binary tree node
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    # @param root, a tree node
+    # @return a boolean
+    def validBST(self, root, min, max):
+        if root == None:
+            return True
+        if root.val <= min:
+            return False
+        if root.val >= max:
+            return False
+        return self.validBST(root.left, min, root.val) and self.validBST(root.right, root.val, max)
+
+    def isValidBST(self, root):
+        return self.validBST(root, -2147483649, 2147483648)
